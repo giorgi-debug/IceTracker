@@ -1,0 +1,171 @@
+@import url('https://fonts.cdnfonts.com/css/bpg-nino-mtavruli');
+
+* {
+    font-family: 'BPG Nino Mtavruli', sans-serif;   
+    margin: 0;
+    padding: 0;                                                                                
+}
+                
+nav {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+nav img {
+    width: 200px;
+}
+
+nav ul {
+    display: flex;
+    gap: 25px;
+}
+
+nav ul li {
+    list-style: none;
+}
+
+nav ul li a {
+    color: black;
+    text-decoration: none;
+    font-size: 25px;
+    font-weight: 100;
+    position: relative;
+    cursor: pointer;
+}
+
+nav button {
+    color: white;
+    background-color: black;
+    border: none;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.header1 {
+    width: 90%;
+    height: 80vh;
+    background: url(Header.webp);
+}
+
+.btn1 {
+    background-color: white;
+    border: none;
+    color: black;
+    width: 80px;
+    height: 80px;
+    font-size: 25px;
+    position: relative;
+    margin-left: -100%;
+    margin-top: 33vh;
+    cursor: pointer;
+}
+
+.btn2 {
+    background-color: white;
+    border: none;
+    color: black;
+    width: 80px;
+    height: 80px;
+    font-size: 25px;
+    position: absolute;
+    margin-left: 85.5%;
+    margin-top: 33vh;
+    cursor: pointer;
+}
+
+.header2 h1 {
+    font-size: 45px;
+}
+
+.header2 .line {
+    width: 70px;
+    height: 3px;
+    background-color: black;
+}
+
+.header2 {
+    margin-left: 5%;
+    margin-top: 8vh;
+}
+
+.header3 {
+    display: flex;
+    gap: 25px;
+    width: 100%;
+    background-color: rgba(189, 135, 135, 0);
+}
+
+.container {
+    width: 260px;
+    height: 350px;
+    margin-left: 1.4%;
+    margin-top: 5vh;
+}
+
+.container {
+    width: 260px;
+    height: 350px;
+    margin-left: 1.4%;
+    margin-top: 5vh;
+    position: relative;
+    color: white;
+    overflow: hidden;
+}
+
+.container::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.container h1,
+.container p {
+    position: relative;
+    z-index: 2;
+    color: white;
+}
+
+#i1 {
+    background: url(HzS3PHS5E6yM.webp);
+    background-size: cover;
+}
+
+#i2 {
+    background: url(FZ7awv3U9tlC.webp);
+    background-size: cover;
+}
+
+#i3 {
+    background: url(kxf61FrF10R5.webp);
+    background-size: cover;
+}
+
+#i4 {
+    background: url(TlzP6AMQ01EJ.webp);
+    background-size: cover;
+}
+
+#i5 {
+    background: url(926c23b7630b892f892c4c5b33d91c26.webp);
+    background-size: cover;
+}
+
+.cont {
+    width: 260px;
+    height: 350px;
+    background-color: black;
+    position: absolute;
+}
+
+.container {
+    color: white;
+}

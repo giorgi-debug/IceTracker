@@ -1,0 +1,1093 @@
+
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>IceTrack | Trainer Dashboard</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Georgian:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --blue: #244f78;
+    --dark: #173956;
+    --light: #eaf3fa;
+    --pale: #f4f8fc;
+    --white: #ffffff;
+    --text: #183650;
+    --muted: #8295a8;
+    --border: #e7eef5;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: 'Inter', 'Noto Sans Georgian', sans-serif;
+    background: #dce8f1;
+    color: var(--text);
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.app {
+    width: 100%;
+    max-width: 393px;
+    min-height: 100vh;
+    background: var(--pale);
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 100px;
+}
+
+/* HEADER */
+
+.header {
+    background: linear-gradient(145deg, #173956, #32658e);
+    color: white;
+    padding: 56px 24px 35px;
+    border-radius: 0 0 30px 30px;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 21px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: #9bd7f4;
+}
+
+.profile {
+    width: 39px;
+    height: 39px;
+    border-radius: 50%;
+    background: #ffffff24;
+    display: grid;
+    place-items: center;
+    font-size: 17px;
+}
+
+.greeting {
+    margin-top: 34px;
+}
+
+.greeting p {
+    color: #b9d2e6;
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+
+.greeting h1 {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.7px;
+}
+
+.greeting h1 span {
+    color: #9bd7f4;
+}
+
+.date {
+    font-size: 12px;
+    color: #d2e3ef;
+    margin-top: 10px;
+}
+
+/* CONTENT */
+
+.content {
+    padding: 25px 20px;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 17px;
+}
+
+.section-heading h2 {
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.section-heading small {
+    font-size: 11px;
+    color: var(--muted);
+}
+
+/* STATS */
+
+.stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 27px;
+}
+
+.stat-card {
+    background: white;
+    padding: 19px 16px;
+    border-radius: 19px;
+    border: 1px solid var(--border);
+}
+
+.stat-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 12px;
+    background: var(--light);
+    display: grid;
+    place-items: center;
+    font-size: 17px;
+    margin-bottom: 17px;
+}
+
+.stat-card h3 {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.stat-card p {
+    color: var(--muted);
+    font-size: 11px;
+    margin-top: 5px;
+}
+
+/* QUICK ACTIONS */
+
+.actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 11px;
+    margin-bottom: 28px;
+}
+
+.action-btn {
+    border: none;
+    border-radius: 15px;
+    padding: 15px 10px;
+    background: var(--blue);
+    color: white;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.action-btn.secondary {
+    background: #e4eff8;
+    color: var(--blue);
+}
+
+/* SECTIONS */
+
+.panel {
+    display: none;
+}
+
+.panel.active {
+    display: block;
+}
+
+.list-card {
+    background: white;
+    padding: 16px;
+    border: 1px solid var(--border);
+    border-radius: 17px;
+    margin-bottom: 11px;
+}
+
+.list-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.list-title {
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.list-subtitle {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 6px;
+}
+
+.tag {
+    background: #eaf3fa;
+    color: var(--blue);
+    border-radius: 8px;
+    padding: 7px 9px;
+    font-size: 10px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.empty {
+    text-align: center;
+    padding: 30px 10px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+/* FORMS */
+
+.form-card {
+    background: white;
+    padding: 20px;
+    border-radius: 19px;
+    border: 1px solid var(--border);
+    margin-bottom: 18px;
+}
+
+.form-card h3 {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.field {
+    margin-bottom: 16px;
+}
+
+.field label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #647d93;
+}
+
+.field input,
+.field select,
+.field textarea {
+    width: 100%;
+    padding: 13px;
+    border-radius: 11px;
+    border: 1px solid var(--border);
+    background: #f8fafc;
+    outline: none;
+    font-family: inherit;
+    font-size: 13px;
+    color: var(--text);
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+    border-color: #6b9bc2;
+}
+
+.submit {
+    width: 100%;
+    background: var(--blue);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* CALENDAR */
+
+.calendar-card {
+    background: white;
+    border-radius: 18px;
+    padding: 17px;
+    border: 1px solid var(--border);
+    margin-bottom: 17px;
+}
+
+.calendar-title {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 17px;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 7px 3px;
+    text-align: center;
+}
+
+.calendar-grid span {
+    font-size: 10px;
+    color: var(--muted);
+    padding: 8px 0;
+}
+
+.calendar-grid button {
+    border: none;
+    background: transparent;
+    border-radius: 9px;
+    padding: 9px 0;
+    font-size: 11px;
+    color: var(--text);
+    font-family: inherit;
+}
+
+.calendar-grid button.today {
+    background: var(--blue);
+    color: white;
+}
+
+.calendar-grid button.has-event {
+    background: #dceefa;
+    color: var(--blue);
+    font-weight: 700;
+}
+
+.calendar-grid button.selected {
+    outline: 2px solid var(--blue);
+}
+
+/* NAVIGATION */
+
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    max-width: 393px;
+    background: rgba(255,255,255,.96);
+    backdrop-filter: blur(15px);
+    border-top: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 12px 5px 25px;
+    z-index: 10;
+}
+
+.nav-btn {
+    background: none;
+    border: none;
+    color: #91a2b2;
+    font-family: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.nav-btn .icon {
+    font-size: 19px;
+}
+
+.nav-btn.active {
+    color: var(--blue);
+    font-weight: 700;
+}
+
+.delete {
+    border: none;
+    background: none;
+    color: #d17d7d;
+    font-size: 11px;
+    padding: 8px;
+}
+
+.footer {
+    text-align: center;
+    color: #a0b0bd;
+    font-size: 10px;
+    padding: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <header class="header">
+        <div class="header-top">
+            <div class="logo">ICE<span>TRACK.</span></div>
+            <div class="profile">⛸</div>
+        </div>
+
+        <div class="greeting">
+            <p>TRAINER DASHBOARD</p>
+            <h1>მოგესალმები, <span>ტრენერო!</span></h1>
+            <div class="date" id="currentDate"></div>
+        </div>
+    </header>
+
+    <main class="content">
+
+        <!-- DASHBOARD -->
+
+        <section class="panel active" id="dashboard">
+
+            <div class="section-heading">
+                <h2>შენი სტატისტიკა</h2>
+                <small>სულ ჯამში</small>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-icon">⛸</div>
+                    <h3 id="lessonCount">0</h3>
+                    <p>ჩატარებული გაკვეთილი</p>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">❄</div>
+                    <h3 id="sharpenCount">0</h3>
+                    <p>გალესილი ციგური</p>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">📅</div>
+                    <h3 id="upcomingCount">0</h3>
+                    <p>მომავალი გაკვეთილი</p>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">📊</div>
+                    <h3 id="todayCount">0</h3>
+                    <p>დღევანდელი გაკვეთილი</p>
+                </div>
+            </div>
+
+            <div class="section-heading">
+                <h2>სწრაფი დამატება</h2>
+            </div>
+
+            <div class="actions">
+                <button class="action-btn" onclick="showPanel('lessons')">
+                    + გაკვეთილის დამატება
+                </button>
+
+                <button class="action-btn secondary" onclick="showPanel('sharpening')">
+                    + ციგურის ლესვა
+                </button>
+            </div>
+
+            <div class="section-heading">
+                <h2>ბოლო აქტივობები</h2>
+            </div>
+
+            <div id="recentActivity"></div>
+
+        </section>
+
+        <!-- LESSONS -->
+
+        <section class="panel" id="lessons">
+
+            <div class="section-heading">
+                <h2>გაკვეთილების ჟურნალი</h2>
+            </div>
+
+            <div class="form-card">
+                <h3>ახალი გაკვეთილი</h3>
+
+                <form id="lessonForm">
+
+                    <div class="field">
+                        <label>მოსწავლის სახელი</label>
+                        <input type="text" id="student" placeholder="მაგ. ანა" required>
+                    </div>
+
+                    <div class="field">
+                        <label>გაკვეთილის თარიღი</label>
+                        <input type="date" id="lessonDate" required>
+                    </div>
+
+                    <div class="field">
+                        <label>დაწყების დრო</label>
+                        <input type="time" id="lessonTime" required>
+                    </div>
+
+                    <div class="field">
+                        <label>ხანგრძლივობა</label>
+                        <select id="duration">
+                            <option value="30 წუთი">30 წუთი</option>
+                            <option value="45 წუთი">45 წუთი</option>
+                            <option value="60 წუთი">60 წუთი</option>
+                            <option value="90 წუთი">90 წუთი</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label>სტატუსი</label>
+                        <select id="lessonStatus">
+                            <option value="ჩატარებული">ჩატარებული</option>
+                            <option value="დაგეგმილი">დაგეგმილი</option>
+                        </select>
+                    </div>
+
+                    <button class="submit" type="submit">
+                        გაკვეთილის შენახვა
+                    </button>
+
+                </form>
+            </div>
+
+            <div class="section-heading">
+                <h2>ყველა გაკვეთილი</h2>
+            </div>
+
+            <div id="lessonList"></div>
+
+        </section>
+
+        <!-- SHARPENING -->
+
+        <section class="panel" id="sharpening">
+
+            <div class="section-heading">
+                <h2>ციგურების ლესვა</h2>
+            </div>
+
+            <div class="form-card">
+                <h3>ახალი ჩანაწერი</h3>
+
+                <form id="sharpenForm">
+
+                    <div class="field">
+                        <label>ციგურების რაოდენობა</label>
+                        <input type="number" id="skateAmount" min="1" placeholder="მაგ. 2" required>
+                    </div>
+
+                    <div class="field">
+                        <label>თარიღი</label>
+                        <input type="date" id="sharpenDate" required>
+                    </div>
+
+                    <div class="field">
+                        <label>შენიშვნა</label>
+                        <textarea id="sharpenNote" rows="3" placeholder="დამატებითი ინფორმაცია..."></textarea>
+                    </div>
+
+                    <button class="submit" type="submit">
+                        ჩანაწერის შენახვა
+                    </button>
+
+                </form>
+            </div>
+
+            <div class="section-heading">
+                <h2>ლესვის ისტორია</h2>
+            </div>
+
+            <div id="sharpenList"></div>
+
+        </section>
+
+        <!-- SCHEDULE -->
+
+        <section class="panel" id="schedule">
+
+            <div class="section-heading">
+                <h2>გაკვეთილების განრიგი</h2>
+            </div>
+
+            <div class="calendar-card">
+                <div class="list-row">
+                    <div class="calendar-title" id="calendarMonth"></div>
+                    <div>
+                        <button onclick="changeMonth(-1)" class="delete">❮</button>
+                        <button onclick="changeMonth(1)" class="delete">❯</button>
+                    </div>
+                </div>
+
+                <div class="calendar-grid" id="calendar"></div>
+            </div>
+
+            <div class="section-heading">
+                <h2>მონიშნული დღის გაკვეთილები</h2>
+            </div>
+
+            <div id="daySchedule"></div>
+
+            <button class="submit" onclick="showPanel('lessons')">
+                + ახალი გაკვეთილის დაგეგმვა
+            </button>
+
+        </section>
+
+        <div class="footer">
+            ICE TRACK · YOUR PERSONAL TRAINER SPACE
+        </div>
+
+    </main>
+
+    <nav class="bottom-nav">
+
+        <button class="nav-btn active" onclick="showPanel('dashboard', this)">
+            <span class="icon">⌂</span>
+            მთავარი
+        </button>
+
+        <button class="nav-btn" onclick="showPanel('lessons', this)">
+            <span class="icon">⛸</span>
+            გაკვეთილები
+        </button>
+
+        <button class="nav-btn" onclick="showPanel('sharpening', this)">
+            <span class="icon">❄</span>
+            ლესვა
+        </button>
+
+        <button class="nav-btn" onclick="showPanel('schedule', this)">
+            <span class="icon">▦</span>
+            განრიგი
+        </button>
+
+    </nav>
+
+</div>
+
+<script>
+
+// DATA STORAGE
+
+let lessons = JSON.parse(localStorage.getItem('lessons')) || [];
+let sharpenings = JSON.parse(localStorage.getItem('sharpenings')) || [];
+
+function saveData() {
+    localStorage.setItem('lessons', JSON.stringify(lessons));
+    localStorage.setItem('sharpenings', JSON.stringify(sharpenings));
+}
+
+// DATE
+
+const today = new Date();
+
+document.getElementById('currentDate').textContent =
+    today.toLocaleDateString('ka-GE', {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+    });
+
+function localDate(date = new Date()) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+}
+
+// NAVIGATION
+
+function showPanel(id, button) {
+
+    document.querySelectorAll('.panel').forEach(panel => {
+        panel.classList.remove('active');
+    });
+
+    document.getElementById(id).classList.add('active');
+
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+
+    if (button) {
+        button.classList.add('active');
+    } else {
+        const index = {
+            dashboard: 0,
+            lessons: 1,
+            sharpening: 2,
+            schedule: 3
+        }[id];
+
+        document.querySelectorAll('.nav-btn')[index].classList.add('active');
+    }
+
+    renderAll();
+    window.scrollTo(0, 0);
+}
+
+// LESSON FORM
+
+document.getElementById('lessonForm').addEventListener('submit', function(e) {
+
+    e.preventDefault();
+
+    const lesson = {
+        id: Date.now(),
+        student: document.getElementById('student').value,
+        date: document.getElementById('lessonDate').value,
+        time: document.getElementById('lessonTime').value,
+        duration: document.getElementById('duration').value,
+        status: document.getElementById('lessonStatus').value
+    };
+
+    lessons.push(lesson);
+
+    saveData();
+    this.reset();
+
+    alert('გაკვეთილი წარმატებით დაემატა!');
+    renderAll();
+
+});
+
+// SHARPENING FORM
+
+document.getElementById('sharpenForm').addEventListener('submit', function(e) {
+
+    e.preventDefault();
+
+    const sharpening = {
+        id: Date.now(),
+        amount: Number(document.getElementById('skateAmount').value),
+        date: document.getElementById('sharpenDate').value,
+        note: document.getElementById('sharpenNote').value
+    };
+
+    sharpenings.push(sharpening);
+
+    saveData();
+    this.reset();
+
+    alert('ჩანაწერი წარმატებით დაემატა!');
+    renderAll();
+
+});
+
+// DELETE
+
+function deleteLesson(id) {
+
+    if (!confirm('გსურს ამ გაკვეთილის წაშლა?')) return;
+
+    lessons = lessons.filter(item => item.id !== id);
+
+    saveData();
+    renderAll();
+}
+
+function deleteSharpening(id) {
+
+    if (!confirm('გსურს ჩანაწერის წაშლა?')) return;
+
+    sharpenings = sharpenings.filter(item => item.id !== id);
+
+    saveData();
+    renderAll();
+}
+
+// FORMAT DATE
+
+function formatDate(date) {
+    if (!date) return '';
+
+    return new Date(date + 'T12:00:00').toLocaleDateString('ka-GE', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+    });
+}
+
+// STATISTICS
+
+function renderStats() {
+
+    const completed = lessons.filter(l => l.status === 'ჩატარებული');
+
+    const upcoming = lessons.filter(l =>
+        l.status === 'დაგეგმილი' && l.date >= localDate()
+    );
+
+    const todayLessons = completed.filter(l =>
+        l.date === localDate()
+    );
+
+    const totalSharpened = sharpenings.reduce((sum, item) =>
+        sum + item.amount, 0
+    );
+
+    document.getElementById('lessonCount').textContent = completed.length;
+
+    document.getElementById('sharpenCount').textContent = totalSharpened;
+
+    document.getElementById('upcomingCount').textContent = upcoming.length;
+
+    document.getElementById('todayCount').textContent = todayLessons.length;
+}
+
+// LESSON LIST
+
+function renderLessons() {
+
+    const container = document.getElementById('lessonList');
+
+    const sorted = [...lessons].sort((a,b) =>
+        (b.date + b.time).localeCompare(a.date + a.time)
+    );
+
+    if (!sorted.length) {
+        container.innerHTML = '<div class="empty">ჯერ გაკვეთილები არ დაგიმატებია.</div>';
+        return;
+    }
+
+    container.innerHTML = sorted.map(item => `
+        <div class="list-card">
+            <div class="list-row">
+                <div>
+                    <div class="list-title">${escapeHTML(item.student)}</div>
+                    <div class="list-subtitle">
+                        ${formatDate(item.date)} · ${item.time}
+                    </div>
+                    <div class="list-subtitle">${item.duration}</div>
+                </div>
+
+                <div style="text-align:right">
+                    <span class="tag">${item.status}</span>
+                    <br>
+                    <button class="delete" onclick="deleteLesson(${item.id})">
+                        წაშლა
+                    </button>
+                </div>
+            </div>
+        </div>
+    `).join('');
+
+}
+
+// SHARPENING LIST
+
+function renderSharpenings() {
+
+    const container = document.getElementById('sharpenList');
+
+    const sorted = [...sharpenings].sort((a,b) =>
+        b.date.localeCompare(a.date)
+    );
+
+    if (!sorted.length) {
+        container.innerHTML = '<div class="empty">ლესვის ჩანაწერები ჯერ არ არის.</div>';
+        return;
+    }
+
+    container.innerHTML = sorted.map(item => `
+        <div class="list-card">
+            <div class="list-row">
+                <div>
+                    <div class="list-title">❄ ${item.amount} ციგური</div>
+                    <div class="list-subtitle">${formatDate(item.date)}</div>
+                    <div class="list-subtitle">${escapeHTML(item.note || 'შენიშვნის გარეშე')}</div>
+                </div>
+
+                <button class="delete" onclick="deleteSharpening(${item.id})">
+                    წაშლა
+                </button>
+            </div>
+        </div>
+    `).join('');
+
+}
+
+// RECENT ACTIVITY
+
+function renderRecent() {
+
+    const container = document.getElementById('recentActivity');
+
+    const activity = [
+        ...lessons.map(item => ({
+            type: 'lesson',
+            date: item.date,
+            time: item.time,
+            title: item.student,
+            subtitle: item.status,
+            id: item.id
+        })),
+
+        ...sharpenings.map(item => ({
+            type: 'sharpen',
+            date: item.date,
+            time: '00:00',
+            title: item.amount + ' ციგური',
+            subtitle: 'ციგურების ლესვა',
+            id: item.id
+        }))
+    ].sort((a,b) =>
+        (b.date + b.time).localeCompare(a.date + a.time)
+    ).slice(0,4);
+
+    if (!activity.length) {
+        container.innerHTML = '<div class="empty">შენი აქტივობები აქ გამოჩნდება.</div>';
+        return;
+    }
+
+    container.innerHTML = activity.map(item => `
+        <div class="list-card">
+            <div class="list-row">
+                <div>
+                    <div class="list-title">
+                        ${item.type === 'lesson' ? '⛸ ' : '❄ '}
+                        ${escapeHTML(item.title)}
+                    </div>
+                    <div class="list-subtitle">
+                        ${formatDate(item.date)}
+                    </div>
+                </div>
+                <span class="tag">${escapeHTML(item.subtitle)}</span>
+            </div>
+        </div>
+    `).join('');
+
+}
+
+// CALENDAR
+
+let calendarDate = new Date();
+let selectedDate = localDate();
+
+function changeMonth(amount) {
+
+    calendarDate.setMonth(calendarDate.getMonth() + amount);
+
+    renderCalendar();
+}
+
+function renderCalendar() {
+
+    const year = calendarDate.getFullYear();
+    const month = calendarDate.getMonth();
+
+    document.getElementById('calendarMonth').textContent =
+        calendarDate.toLocaleDateString('ka-GE', {
+            month: 'long',
+            year: 'numeric'
+        });
+
+    const container = document.getElementById('calendar');
+
+    const names = ['ორ', 'სამ', 'ოთხ', 'ხუთ', 'პარ', 'შაბ', 'კვ'];
+
+    const firstDay = new Date(year, month, 1).getDay();
+
+    const offset = (firstDay + 6) % 7;
+
+    const days = new Date(year, month + 1, 0).getDate();
+
+    let html = names.map(name => `<span>${name}</span>`).join('');
+
+    for (let i = 0; i < offset; i++) {
+        html += '<span></span>';
+    }
+
+    for (let day = 1; day <= days; day++) {
+
+        const date = `${year}-${String(month + 1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+
+        const hasEvent = lessons.some(l =>
+            l.date === date && l.status === 'დაგეგმილი'
+        );
+
+        const isToday = date === localDate();
+        const isSelected = date === selectedDate;
+
+        let classes = '';
+
+        if (isToday) classes += ' today';
+        if (hasEvent) classes += ' has-event';
+        if (isSelected) classes += ' selected';
+
+        html += `
+            <button class="${classes}"
+                onclick="selectDay('${date}')">
+                ${day}
+            </button>
+        `;
+    }
+
+    container.innerHTML = html;
+
+    renderDaySchedule();
+}
+
+function selectDay(date) {
+
+    selectedDate = date;
+
+    renderCalendar();
+}
+
+function renderDaySchedule() {
+
+    const container = document.getElementById('daySchedule');
+
+    const dayLessons = lessons.filter(l =>
+        l.date === selectedDate && l.status === 'დაგეგმილი'
+    ).sort((a,b) => a.time.localeCompare(b.time));
+
+    if (!dayLessons.length) {
+        container.innerHTML = '<div class="empty">ამ დღეს დაგეგმილი გაკვეთილები არ არის.</div>';
+        return;
+    }
+
+    container.innerHTML = dayLessons.map(item => `
+        <div class="list-card">
+            <div class="list-title">${escapeHTML(item.student)}</div>
+            <div class="list-subtitle">
+                ${item.time} · ${item.duration}
+            </div>
+        </div>
+    `).join('');
+
+}
+
+// HTML SAFETY
+
+function escapeHTML(value) {
+    return String(value).replace(/[&<>"']/g, char => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+    })[char]);
+}
+
+// UPDATE EVERYTHING
+
+function renderAll() {
+
+    renderStats();
+    renderLessons();
+    renderSharpenings();
+    renderRecent();
+    renderCalendar();
+
+}
+
+// DEFAULT DATES
+
+document.getElementById('lessonDate').value = localDate();
+document.getElementById('sharpenDate').value = localDate();
+
+renderAll();
+
+</script>
+
+</body>
+</html>
